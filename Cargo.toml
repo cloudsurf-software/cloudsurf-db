@@ -1,0 +1,15 @@
+[package]
+name = "cloudsurf-db"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "PostgreSQL connection pool with exponential backoff retry for Fly.io deployments"
+repository = "https://github.com/cloudsurf-software/cloudsurf-db"
+
+[dependencies]
+sqlx = { version = "0.8", default-features = false, features = ["runtime-tokio", "postgres"] }
+tokio = { version = "1", features = ["time"] }
+tracing = "0.1"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["macros", "rt"] }
