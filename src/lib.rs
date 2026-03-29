@@ -16,7 +16,7 @@ pub struct PoolConfig {
 impl Default for PoolConfig {
     fn default() -> Self {
         Self {
-            max_connections: 3,
+            max_connections: 8,
             min_connections: 0,
             acquire_timeout_secs: 10,
             idle_timeout_secs: 120,
@@ -137,8 +137,8 @@ mod tests {
     #[test]
     fn pool_config_tuned_for_fly() {
         let c = default_config();
-        // 2 machines × 3 connections = 6 total — within Fly Postgres limits
-        assert_eq!(c.max_connections, 3);
+        // 2 machines × 8 connections = 16 total — within Fly Postgres limits
+        assert_eq!(c.max_connections, 8);
         assert_eq!(c.acquire_timeout_secs, 10);
         // idle_timeout must be well under Fly's ~600s idle disconnect
         assert!(c.idle_timeout_secs < 300);
